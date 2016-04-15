@@ -6,7 +6,7 @@
 /*   By: jleu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/18 00:25:18 by jleu              #+#    #+#             */
-/*   Updated: 2016/04/07 22:57:15 by jleu             ###   ########.fr       */
+/*   Updated: 2016/04/15 19:16:52 by jleu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,31 @@ int					ft_convertcolor(int c)
 {
 	int	val;
 
+	val = 0;
+	if (c > 170)
+	{
+		val = (c - 170);
+		c -= 85;
+	}
+	if (c > 85)
+	{
+		val += (c - 85) * 255 / 85 * 256;
+		c -= 85;
+	}
+	val += (c * 255) / 85 * 256 * 256;
+	return (val);
+}
+/*
+int					ft_convertcolor(int c)
+{
+	int	val;
+
 	val = ((255 * c / 1000) * 256 * 256
 			+ (255 * (c % 100) / 100) * 256
 			+ (255 * (c % 10) / 10));
 	return (val);
 }
-
+*/
 void				ft_put_pixel_to_image(t_data data, int x, int y, int color)
 {
 	unsigned int	cpt;

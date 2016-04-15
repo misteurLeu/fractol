@@ -6,7 +6,7 @@
 /*   By: jleu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/18 00:25:07 by jleu              #+#    #+#             */
-/*   Updated: 2016/04/08 09:31:22 by jleu             ###   ########.fr       */
+/*   Updated: 2016/04/15 19:19:06 by jleu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int		ft_get_color(t_com *z, t_com *c)
 	register unsigned int	color;
 
 	color = 0;
-	while (z->a * z->a + z->b * z->b <= 4.0 && ++color < 999)
+	while (z->a * z->a + z->b * z->b <= 4.0 && ++color < 256)
 	{
 		save_a = z->a;
 		save_b = z->b;
@@ -80,14 +80,10 @@ int				ft_image_draw(t_data *data)
 	t_com		z;
 	t_com		c;
 
-	if (data->img)
-	{
-		mlx_destroy_image(data->mlx, data->img);
+	if (data->img && !mlx_destroy_image(data->mlx, data->img))
 		data->img = NULL;
-	}
 	data->img = mlx_new_image(data->mlx, data->win.largeur, data->win.hauteur);
-	data->img_ptr =
-		mlx_get_data_addr(data->img, &data->color,
+	data->img_ptr = mlx_get_data_addr(data->img, &data->color,
 				&data->size_line, &data->endian);
 	data->color /= 8;
 	if (data->fract_type < 3)
@@ -95,9 +91,11 @@ int				ft_image_draw(t_data *data)
 	if (data->fract_type > 2)
 		ft_arbre(data,
 		ft_new_complex(&c, ft_resize2(data->x2, *data, data->win.largeur),
-							ft_resize2(data->y2, *data, data->win.hauteur) + data->win.hauteur / 2),
+							ft_resize2(data->y2, *data, data->win.hauteur)
+							+ data->win.hauteur / 2),
 		ft_new_complex(&z, ft_resize2(data->x2, *data, data->win.largeur),
-							ft_resize2(data->y2, *data, data->win.hauteur) + data->win.hauteur / 2 - 80.0), 492);
+							ft_resize2(data->y2, *data, data->win.hauteur)
+							+ data->win.hauteur / 2 - 80.0), 255);
 	mlx_clear_window(data->mlx, data->win.win);
 	mlx_put_image_to_window(data->mlx, data->win.win, data->img, 0, 0);
 	ft_write_param(data);

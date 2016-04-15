@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jleu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/18 00:26:54 by jleu              #+#    #+#             */
-/*   Updated: 2016/04/08 09:31:27 by jleu             ###   ########.fr       */
+/*   Created: 2016/04/15 18:50:48 by jleu              #+#    #+#             */
+/*   Updated: 2016/04/15 18:51:27 by jleu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#ifndef FRACTOL_H
+# define FRACTOL_H
 
 # include "../libft/includes/libft.h"
 # include <math.h>
@@ -70,12 +70,12 @@ void				ft_put_pixel_to_image(t_data data, int x, int y, int color);
 void				ft_write_param(t_data *data);
 int					ft_image_draw(t_data *data);
 void				ft_quit(t_data *data, int sortie);
-t_com				*ft_new_complex(t_com *z,long double a,long double b);
+t_com				*ft_new_complex(t_com *z, long double a, long double b);
 long double			ft_zoom(unsigned int zoom);
 long double			ft_resize(int val, t_data data, int size);
 int					ft_rand(int a, int b);
 t_com				*ft_getcomplex(t_com *c, t_data *data, int x, int y);
-void				ft_hook(t_data* data);
+void				ft_hook(t_data *data);
 void				ft_putline(t_data data, t_com p1, t_com p2, int color);
 int					mouse_move_hook(int x, int y, void *param);
 
